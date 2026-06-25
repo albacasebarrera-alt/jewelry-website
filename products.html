@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Lumière Jewelry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Lumi<span>è</span>re</a>
+        <ul class="nav-links">
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li>
+            <a href="checkout.html" class="cart-link">
+              Cart
+              <span class="cart-badge">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>The Collection</h1>
+      <p>Handcrafted pieces for every occasion.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="All">All</button>
+        <button class="filter-btn" data-filter="Rings">Rings</button>
+        <button class="filter-btn" data-filter="Necklaces">Necklaces</button>
+        <button class="filter-btn" data-filter="Earrings">Earrings</button>
+        <button class="filter-btn" data-filter="Bracelets">Bracelets</button>
+      </div>
+
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Lumi<span>è</span>re</h3>
+          <p>Fine jewelry for life's most meaningful moments.<br>Handcrafted with care since 2024.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Jewelry</a></li>
+            <li><a href="products.html">Rings</a></li>
+            <li><a href="products.html">Necklaces</a></li>
+            <li><a href="products.html">Earrings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Lumière Jewelry. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    let activeFilter = 'All';
+
+    function renderProducts() {
+      const filtered = activeFilter === 'All'
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === activeFilter);
+
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <div class="product-image">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+          </div>
+          <div class="product-body">
+            <p class="product-cat">${p.category}</p>
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <div class="product-footer">
+              <span class="product-price">$${p.price}</span>
+              <button class="add-to-cart-btn" onclick='addToCart(${JSON.stringify(p)})'>Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('filter-bar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      activeFilter = btn.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
