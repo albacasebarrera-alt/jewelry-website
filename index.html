@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumière Jewelry — Handcrafted Fine Jewelry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Lumi<span>è</span>re</a>
+        <ul class="nav-links">
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <li>
+            <a href="checkout.html" class="cart-link">
+              Cart
+              <span class="cart-badge">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="eyebrow">Handcrafted Fine Jewelry</p>
+        <h1>Wear Something<br><em>Worth Remembering</em></h1>
+        <p>Each piece is thoughtfully crafted for those who believe jewelry should tell a story.</p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn btn-gold">Shop the Collection</a>
+          <a href="#featured" class="btn btn-outline-white">See Featured Pieces</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section section-alt" id="featured">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Bestsellers</p>
+        <h2>Featured Pieces</h2>
+        <p>Our most-loved designs, crafted to last a lifetime.</p>
+      </div>
+      <div class="products-grid" id="featured-products"></div>
+      <div style="text-align:center; margin-top: 48px;">
+        <a href="products.html" class="btn btn-outline">View Full Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Why Lumière</p>
+        <h2>Made With Intention</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">&#10022;</div>
+          <h3>Handcrafted Quality</h3>
+          <p>Every piece is made by hand using traditional goldsmithing techniques.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#10022;</div>
+          <h3>Ethically Sourced</h3>
+          <p>All gemstones and metals are responsibly sourced and certified conflict-free.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#10022;</div>
+          <h3>Free Shipping</h3>
+          <p>Complimentary shipping on all orders, delivered in our signature gift box.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#10022;</div>
+          <h3>30-Day Returns</h3>
+          <p>Not in love with your piece? Return it hassle-free within 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="container">
+      <h2>New Arrivals This Season</h2>
+      <p>Discover our latest designs — limited quantities, made to order.</p>
+      <a href="products.html" class="btn btn-dark">Explore New Pieces</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Lumi<span>è</span>re</h3>
+          <p>Fine jewelry for life's most meaningful moments.<br>Handcrafted with care since 2024.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Jewelry</a></li>
+            <li><a href="products.html">Rings</a></li>
+            <li><a href="products.html">Necklaces</a></li>
+            <li><a href="products.html">Earrings</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Lumière Jewelry. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    const featured = PRODUCTS.slice(0, 3);
+    const grid = document.getElementById('featured-products');
+    grid.innerHTML = featured.map(p => `
+      <div class="product-card">
+        <div class="product-image">
+          <img src="${p.image}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="product-body">
+          <p class="product-cat">${p.category}</p>
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          <div class="product-footer">
+            <span class="product-price">$${p.price}</span>
+            <button class="add-to-cart-btn" onclick='addToCart(${JSON.stringify(p)})'>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>
